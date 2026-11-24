@@ -1,0 +1,1117 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karim Khaled - Software QC Engineer Portfolio</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        indigo: {
+                            50: '#eef2ff',
+                            100: '#e0e7ff',
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            700: '#4338ca',
+                        },
+                        cyan: {
+                            400: '#22d3ee',
+                            500: '#06b6d4',
+                            600: '#0891b2',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Fira+Code:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Modern Glassmorphism & Cyberpunk Accents */
+        .glass {
+            background: rgba(15, 23, 42, 0.85);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+        .light .glass {
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+        }
+        
+        .glass-card {
+            background: rgba(30, 41, 59, 0.6);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+        .light .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(226, 232, 240, 0.8);
+            color: #0f172a;
+        }
+
+        .light body {
+            background-color: #f8fafc;
+            color: #0f172a;
+        }
+
+        .light .text-white {
+            color: #0f172a !important;
+        }
+
+        .light .text-slate-300, .light .text-slate-400 {
+            color: #475569 !important;
+        }
+
+        .light .bg-slate-900, .light .bg-slate-950 {
+            background-color: #ffffff !important;
+        }
+
+        /* Typing cursor effect */
+        .typing-cursor::after {
+            content: '_';
+            animation: blink 1s infinite;
+            color: #22d3ee;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+
+        /* Gradient Text */
+        .text-gradient {
+            background: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .bg-gradient-cyber {
+            background: linear-gradient(135deg, #4f46e5 0%, #0891b2 100%);
+        }
+        
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0f172a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #334155;
+            border-radius: 4px;
+        }
+
+        .font-mono-code {
+            font-family: 'Fira Code', monospace;
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 font-sans transition-colors duration-300 relative overflow-x-hidden selection:bg-indigo-500 selection:text-white">
+
+    <!-- Interactive Canvas Background -->
+    <div class="fixed inset-0 pointer-events-none z-0 opacity-30">
+        <canvas id="particleCanvas"></canvas>
+    </div>
+
+    <!-- Top Announcement Bar / QA Status Banner -->
+    <div class="bg-indigo-950/80 border-b border-indigo-800/50 text-indigo-200 text-xs py-1.5 px-4 text-center z-50 relative flex justify-center items-center gap-4 flex-wrap">
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-circle-check text-emerald-400"></i> Quality Assurance & QC Specialist</span>
+        <span class="hidden md:inline">•</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-credit-card text-cyan-400"></i> FinTech & POS Systems</span>
+        <span class="hidden md:inline">•</span>
+        <span class="flex items-center gap-1.5"><i class="fa-solid fa-code text-indigo-400"></i> API & Database Testing</span>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="sticky top-0 left-0 w-full z-50 transition-all duration-300 py-3.5 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <!-- Brand Logo -->
+            <a href="#hero" class="text-lg font-bold tracking-tight text-white flex items-center gap-2.5">
+                <span class="w-9 h-9 rounded-xl bg-gradient-cyber flex items-center justify-center text-white text-xs font-black shadow-lg shadow-indigo-500/20 font-mono-code">QC</span>
+                <div class="flex flex-col">
+                    <span class="font-extrabold tracking-wide">Karim Khaled<span class="text-cyan-400">.qc</span></span>
+                    <span class="text-[10px] text-slate-400 font-normal -mt-1">Software QC Engineer</span>
+                </div>
+            </a>
+
+            <!-- Desktop Nav Links -->
+            <div class="hidden lg:flex items-center space-x-7 font-medium text-xs uppercase tracking-wider text-slate-300">
+                <a href="#about" class="hover:text-cyan-400 transition-colors">About</a>
+                <a href="#skills" class="hover:text-cyan-400 transition-colors">Skills</a>
+                <a href="#experience" class="hover:text-cyan-400 transition-colors">Experience</a>
+                <a href="#projects" class="hover:text-cyan-400 transition-colors">Projects</a>
+                <a href="#certifications" class="hover:text-cyan-400 transition-colors">Certifications</a>
+                <a href="#contact" class="hover:text-cyan-400 transition-colors">Contact</a>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex items-center space-x-3">
+                <button id="themeToggle" aria-label="Toggle Theme" class="p-2 rounded-xl bg-slate-800/80 text-slate-300 hover:text-white border border-slate-700 transition-all">
+                    <i id="themeIcon" class="fa-solid fa-sun"></i>
+                </button>
+
+                <button onclick="downloadCVPlaceholder()" class="hidden sm:inline-flex items-center gap-2 px-4 py-2 text-xs font-semibold text-white bg-slate-800 hover:bg-slate-700 border border-slate-700 rounded-xl transition-all">
+                    <i class="fa-solid fa-file-arrow-down text-cyan-400"></i> Download CV
+                </button>
+                
+                <a href="#contact" class="inline-flex items-center px-4 py-2 text-xs font-bold text-white bg-gradient-cyber rounded-xl shadow-lg hover:shadow-indigo-500/25 transition-all transform hover:-translate-y-0.5">
+                    Hire Me
+                </a>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobileMenuBtn" aria-label="Toggle Menu" class="lg:hidden p-2 text-slate-300 hover:text-white focus:outline-none">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobileMenu" class="hidden lg:hidden px-4 pt-3 pb-6 space-y-2 bg-slate-900 border-b border-slate-800">
+            <a href="#about" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">About</a>
+            <a href="#skills" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Skills</a>
+            <a href="#experience" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Experience</a>
+            <a href="#projects" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Projects</a>
+            <a href="#certifications" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Certifications</a>
+            <a href="#contact" class="block px-3 py-2 rounded-lg text-sm font-medium hover:bg-slate-800">Contact</a>
+            <button onclick="downloadCVPlaceholder()" class="w-full text-left px-3 py-2 rounded-lg text-sm font-medium text-cyan-400 hover:bg-slate-800">
+                <i class="fa-solid fa-file-arrow-down mr-2"></i> Download CV
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="min-h-[90vh] flex items-center justify-center pt-12 pb-12 relative z-10 px-4">
+        <div class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            
+            <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-950/80 text-cyan-400 text-xs font-mono-code border border-indigo-800/60 shadow-inner">
+                    <span class="w-2 h-2 rounded-full bg-cyan-400 animate-pulse"></span> Cairo, Egypt • Open to Opportunities
+                </div>
+                
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-tight">
+                    Karim Khaled <br>
+                    <span id="typingText" class="text-gradient typing-cursor"></span>
+                </h1>
+
+                <p class="text-base sm:text-lg text-slate-300 max-w-2xl leading-relaxed font-light">
+                    Detail-oriented Software QC Engineer with hands-on experience in FinTech, Payment Systems, POS Testing, API Testing, and Database verification across Web and Mobile applications.
+                </p>
+
+                <!-- Highlight Badges -->
+                <div class="flex flex-wrap gap-2 justify-center lg:justify-start text-xs font-semibold">
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-indigo-500/30 text-indigo-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-credit-card text-cyan-400"></i> FinTech & POS Systems
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-indigo-500/30 text-indigo-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-network-wired text-cyan-400"></i> API & Database Testing
+                    </span>
+                    <span class="px-3 py-1.5 rounded-lg bg-slate-900 border border-indigo-500/30 text-indigo-300 flex items-center gap-1.5">
+                        <i class="fa-solid fa-robot text-cyan-400"></i> Selenium & Java Knowledge
+                    </span>
+                </div>
+
+                <div class="pt-4 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4">
+                    <a href="#experience" class="w-full sm:w-auto px-7 py-3.5 bg-gradient-cyber text-white font-bold rounded-xl shadow-lg shadow-indigo-500/20 hover:shadow-cyan-500/30 hover:opacity-95 transition-all flex items-center justify-center gap-2">
+                        View Experience <i class="fa-solid fa-arrow-right text-xs"></i>
+                    </a>
+                    <a href="#contact" class="w-full sm:w-auto px-7 py-3.5 glass-card font-semibold text-slate-200 rounded-xl hover:bg-slate-800/80 border border-slate-700 transition-all flex items-center justify-center gap-2">
+                        Get In Touch
+                    </a>
+                    <a href="https://www.linkedin.com/in/karim-khaled-38ba10216" target="_blank" rel="noopener" class="p-3.5 glass-card rounded-xl text-slate-300 hover:text-cyan-400 border border-slate-700 transition-all flex items-center justify-center" title="LinkedIn Profile">
+                        <i class="fa-brands fa-linkedin text-xl"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Interactive QA Dashboard Widget -->
+            <div class="lg:col-span-5">
+                <div class="glass-card p-6 rounded-2xl border border-slate-700 shadow-2xl relative overflow-hidden">
+                    <div class="flex justify-between items-center pb-4 border-b border-slate-800">
+                        <div class="flex items-center gap-2">
+                            <span class="w-3 h-3 rounded-full bg-emerald-500 animate-ping"></span>
+                            <span class="text-xs font-mono-code font-bold text-slate-300">API & POS TEST SIMULATOR</span>
+                        </div>
+                        <span class="text-[10px] bg-slate-800 text-slate-400 px-2 py-0.5 rounded font-mono-code">v2.6.0</span>
+                    </div>
+
+                    <div class="mt-6 space-y-4 font-mono-code">
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400">Test Execution Pass Rate</span>
+                                <span class="text-emerald-400 font-bold">98.6%</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-emerald-500 to-cyan-400 h-2 rounded-full w-[98%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400">Defects Logged & Resolved</span>
+                                <span class="text-cyan-400 font-bold">450+ Bugs</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-indigo-500 to-cyan-400 h-2 rounded-full w-[92%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+
+                        <div>
+                            <div class="flex justify-between text-xs mb-1">
+                                <span class="text-slate-400">Test Scenarios Designed</span>
+                                <span class="text-indigo-400 font-bold">1,800+ Cases</span>
+                            </div>
+                            <div class="w-full bg-slate-800 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-purple-500 to-indigo-500 h-2 rounded-full w-[95%] transition-all duration-1000"></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Interactive Quick QA Tool Simulator -->
+                    <div class="mt-6 pt-4 border-t border-slate-800">
+                        <div class="text-[11px] text-slate-400 mb-2 font-mono-code flex justify-between items-center">
+                            <span>API Status Check:</span>
+                            <span id="apiStatusBadge" class="text-emerald-400">200 OK</span>
+                        </div>
+                        <div class="bg-slate-950 p-3 rounded-lg border border-slate-800 text-xs font-mono-code text-cyan-300 flex justify-between items-center">
+                            <span>POST /api/v1/payment/process</span>
+                            <button onclick="simulateApiCheck()" class="px-2.5 py-1 bg-indigo-600 hover:bg-indigo-500 text-white rounded text-[10px] transition">Run Test</button>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- About Me Section -->
+    <section id="about" class="py-20 relative z-10 px-4">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Background</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">About Karim Khaled</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+                <!-- Info Cards -->
+                <div class="lg:col-span-7 space-y-6">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
+                        <h3 class="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                            <i class="fa-solid fa-user-check text-cyan-400"></i> Software QC Engineer
+                        </h3>
+                        <p class="text-slate-300 leading-relaxed text-sm mb-4">
+                            Detail-oriented and results-driven Software Tester with hands-on experience in FinTech and Payment Systems, specializing in manual, API, and database testing across web and mobile platforms. Skilled in designing test cases, identifying bugs, and ensuring software quality throughout the SDLC.
+                        </p>
+                        <p class="text-slate-300 leading-relaxed text-sm">
+                            Proficient in tools like JIRA, Postman, Swagger, and Azure DevOps with a solid understanding of Agile methodologies (Scrum/Kanban). Adept at performing functional, regression, integration, and UI testing to deliver reliable user experiences.
+                        </p>
+                    </div>
+
+                    <!-- Education Highlight -->
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 flex items-start gap-4">
+                        <div class="p-3 bg-indigo-950/80 rounded-xl border border-indigo-800/60 text-cyan-400">
+                            <i class="fa-solid fa-graduation-cap text-2xl"></i>
+                        </div>
+                        <div>
+                            <span class="text-xs text-slate-400 font-mono-code">Graduated 2024</span>
+                            <h4 class="text-base font-bold text-white">Helwan University - Bachelor of Computer Science & Information</h4>
+                            <p class="text-xs text-indigo-300 mt-0.5">Major: Information System</p>
+                            <p class="text-xs text-slate-400 mt-2"><strong>Graduation Project:</strong> Real Estate Rent & Sale System</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Fast Facts -->
+                <div class="lg:col-span-5 space-y-4">
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 space-y-4">
+                        <h4 class="text-sm font-bold text-white font-mono-code uppercase tracking-wider border-b border-slate-800 pb-2">Core Competencies</h4>
+                        
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> FinTech & POS Systems</span>
+                            <span class="text-slate-400">Advanced</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> API Testing (Postman/Swagger)</span>
+                            <span class="text-slate-400">Advanced</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> SQL & Database Validation</span>
+                            <span class="text-slate-400">Proficient</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Gray Box & System Testing</span>
+                            <span class="text-slate-400">Experienced</span>
+                        </div>
+                        <div class="flex items-center justify-between text-xs">
+                            <span class="text-slate-300"><i class="fa-solid fa-check text-emerald-400 mr-2"></i> Selenium Automation</span>
+                            <span class="text-slate-400">Good Knowledge</span>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border border-slate-800 text-center">
+                        <p class="text-xs text-slate-400 font-mono-code mb-2">Location</p>
+                        <div class="text-lg font-bold text-white flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-location-dot text-red-400"></i> Cairo, Egypt
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 relative z-10 px-4 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Competencies & Tools</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">Technical Skills Matrix</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Category 1: Testing Methods -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 bg-indigo-950 text-indigo-400 rounded-xl border border-indigo-800">
+                            <i class="fa-solid fa-vial-circle-check text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Testing Methods</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Manual & Functional Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Gray Box Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> POS (Point of Sale) & Card Acceptance</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Regression, Retest & Integration</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Smoke & Sanity Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Exploratory & Static Requirement Testing</li>
+                    </ul>
+                </div>
+
+                <!-- Category 2: API & Database -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 bg-cyan-950 text-cyan-400 rounded-xl border border-cyan-800">
+                            <i class="fa-solid fa-database text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">API & Database</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Postman & Swagger API Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> SQL Queries Writing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Data Validation & Integrity Checks</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> CRUD Operations Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Selenium Automation (Good Knowledge)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> JMeter Performance Knowledge</li>
+                    </ul>
+                </div>
+
+                <!-- Category 3: Tools & SDLC -->
+                <div class="glass-card p-6 rounded-2xl border border-slate-800 hover:border-indigo-500/40 transition-all">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="p-2.5 bg-emerald-950 text-emerald-400 rounded-xl border border-emerald-800">
+                            <i class="fa-solid fa-toolbox text-lg"></i>
+                        </div>
+                        <h3 class="font-bold text-white text-base">Tools & SDLC</h3>
+                    </div>
+                    <ul class="space-y-2.5 text-xs text-slate-300">
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> JIRA & Azure DevOps</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Trello Bug Tracking</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Agile Framework (Scrum / Kanban)</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Figma & Adobe XD Reading</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Mobile Application Testing</li>
+                        <li class="flex items-center gap-2"><i class="fa-solid fa-angle-right text-cyan-400"></i> Java Programming Basics</li>
+                    </ul>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Work Experience Section -->
+    <section id="experience" class="py-20 relative z-10 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Career History</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">Work Experience</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full"></div>
+            </div>
+
+            <div class="relative border-l-2 border-slate-800 ml-4 sm:ml-32 space-y-12">
+                
+                <!-- Experience Item 1 -->
+                <div class="relative pl-8 sm:pl-10 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-cyan-400 ring-4 ring-slate-950 group-hover:scale-125 transition-transform"></div>
+                    <span class="sm:absolute sm:-left-36 sm:top-1 sm:text-right text-xs font-mono-code font-bold text-cyan-400 block mb-1">
+                        Mar 2026 - Present
+                    </span>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-md">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Software QC Engineer</h3>
+                                <span class="text-xs font-semibold text-indigo-400">National Technology Group (NTG)</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 text-[11px] font-mono-code border border-indigo-800">FinTech & Enterprise</span>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed list-disc list-inside">
+                            <li>Software Quality Control and Testing activities for enterprise applications and payment-related systems.</li>
+                            <li>Executed Database Testing, including data validation, CRUD operations, and DB verification.</li>
+                            <li>Applied Gray Box Testing techniques combining system architecture, backend logic, APIs, and database behavior.</li>
+                            <li>Performed POS (Point of Sale) Testing, validating transaction flows, business scenarios, and integrations.</li>
+                            <li>Tested Master App and Configuration Portal, validating configuration management and business rules.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience Item 2 -->
+                <div class="relative pl-8 sm:pl-10 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-indigo-500 ring-4 ring-slate-950 group-hover:scale-125 transition-transform"></div>
+                    <span class="sm:absolute sm:-left-36 sm:top-1 sm:text-right text-xs font-mono-code font-bold text-indigo-400 block mb-1">
+                        Mar 2024
+                    </span>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-md">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Junior Software Testing Engineer</h3>
+                                <span class="text-xs font-semibold text-indigo-400">EXAS</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-[11px] font-mono-code">Full-Time</span>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed list-disc list-inside">
+                            <li>Read and analyzed requirements, designed test cases, and created test scripts and data.</li>
+                            <li>Executed smoke/sanity tests, retesting, and regression testing.</li>
+                            <li>Tested REST APIs using Swagger and Postman endpoints.</li>
+                            <li>Reported issues, tracked bugs to resolution, and prepared sprint status reports.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Experience Item 3 -->
+                <div class="relative pl-8 sm:pl-10 group">
+                    <div class="absolute -left-[9px] top-1.5 w-4 h-4 rounded-full bg-purple-500 ring-4 ring-slate-950 group-hover:scale-125 transition-transform"></div>
+                    <span class="sm:absolute sm:-left-36 sm:top-1 sm:text-right text-xs font-mono-code font-bold text-purple-400 block mb-1">
+                        May 2023 - Dec 2023
+                    </span>
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800 shadow-md">
+                        <div class="flex flex-wrap justify-between items-start gap-2 mb-3">
+                            <div>
+                                <h3 class="text-xl font-bold text-white">Software Tester</h3>
+                                <span class="text-xs font-semibold text-indigo-400">Freelance</span>
+                            </div>
+                            <span class="px-2.5 py-1 rounded bg-slate-800 text-slate-300 text-[11px] font-mono-code">Freelance</span>
+                        </div>
+                        <ul class="space-y-2 text-slate-300 text-xs sm:text-sm leading-relaxed list-disc list-inside">
+                            <li>Executed exploratory, functional, regression, and integration testing on diverse web/mobile builds.</li>
+                            <li>Identified, documented, and tracked bugs using JIRA with clear team communication.</li>
+                            <li>Executed cross-browser and cross-device testing to ensure consistent UX.</li>
+                        </ul>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 relative z-10 px-4 bg-slate-900/50">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-12">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Quality Assured Systems</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">Tested Projects</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full mb-6"></div>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex justify-center flex-wrap gap-2 mb-10">
+                <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold font-mono-code transition-all bg-indigo-600 text-white shadow-md" data-filter="all">ALL PROJECTS</button>
+                <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold font-mono-code text-slate-400 hover:text-white hover:bg-slate-800 transition-all" data-filter="web">WEB APPS</button>
+                <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold font-mono-code text-slate-400 hover:text-white hover:bg-slate-800 transition-all" data-filter="mobile">MOBILE APPS</button>
+                <button class="filter-btn px-4 py-1.5 rounded-xl text-xs font-semibold font-mono-code text-slate-400 hover:text-white hover:bg-slate-800 transition-all" data-filter="enterprise">ENTERPRISE</button>
+            </div>
+
+            <!-- Projects Grid -->
+            <div id="projectsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                
+                <!-- Project 1: Bab Rezq -->
+                <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group flex flex-col justify-between" data-category="web" onclick="openProjectModal('babrezq')">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-indigo-950 text-indigo-300 text-[10px] font-mono-code border border-indigo-800">WEB APPLICATION</span>
+                            <i class="fa-solid fa-hand-holding-heart text-cyan-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Bab Rezq</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            Full QC testing for community and service distribution web platform. Tested workflow integrity, APIs, and UI consistency.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-[11px] font-mono-code text-cyan-400">View Test Scope <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <i class="fa-solid fa-circle-info text-slate-500 group-hover:text-cyan-400"></i>
+                    </div>
+                </div>
+
+                <!-- Project 2: qPMOP -->
+                <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group flex flex-col justify-between" data-category="enterprise" onclick="openProjectModal('qpmop')">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-cyan-950 text-cyan-300 text-[10px] font-mono-code border border-cyan-800">WEB & MOBILE (iOS/Android)</span>
+                            <i class="fa-solid fa-diagram-project text-indigo-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">qPMOP Management</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            Project management suite for Web, Android, and iOS. Conducted cross-device testing, milestone tracking logic, and user role validation.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-[11px] font-mono-code text-cyan-400">View Test Scope <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <i class="fa-solid fa-circle-info text-slate-500 group-hover:text-cyan-400"></i>
+                    </div>
+                </div>
+
+                <!-- Project 3: q360 -->
+                <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group flex flex-col justify-between" data-category="web" onclick="openProjectModal('q360')">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-purple-950 text-purple-300 text-[10px] font-mono-code border border-purple-800">WEB SYSTEM</span>
+                            <i class="fa-solid fa-user-gear text-purple-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">q360 Assistant</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            Personal assistant web ecosystem. Conducted gray-box testing, backend logic validation, SQL queries execution, and task workflows.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-[11px] font-mono-code text-cyan-400">View Test Scope <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <i class="fa-solid fa-circle-info text-slate-500 group-hover:text-cyan-400"></i>
+                    </div>
+                </div>
+
+                <!-- Project 4: qAuth -->
+                <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group flex flex-col justify-between" data-category="mobile" onclick="openProjectModal('qauth')">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-emerald-950 text-emerald-300 text-[10px] font-mono-code border border-emerald-800">MOBILE APP (Biometrics)</span>
+                            <i class="fa-solid fa-fingerprint text-emerald-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">qAuth Attendance</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            Employee attendance mobile app using biometric recognition (Fingerprint & Face Recognition). Validated security flows and API sync.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-[11px] font-mono-code text-cyan-400">View Test Scope <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <i class="fa-solid fa-circle-info text-slate-500 group-hover:text-cyan-400"></i>
+                    </div>
+                </div>
+
+                <!-- Project 5: Al2btal Gym -->
+                <div class="project-card glass-card rounded-2xl p-6 border border-slate-800 hover:border-indigo-500/50 transition-all cursor-pointer group flex flex-col justify-between" data-category="mobile" onclick="openProjectModal('al2btal')">
+                    <div>
+                        <div class="flex justify-between items-center mb-4">
+                            <span class="px-2.5 py-1 rounded bg-blue-950 text-blue-300 text-[10px] font-mono-code border border-blue-800">MOBILE APP</span>
+                            <i class="fa-solid fa-dumbbell text-blue-400 text-xl"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-white group-hover:text-cyan-400 transition-colors">Al2btal Gym</h3>
+                        <p class="text-slate-300 text-xs mt-2 leading-relaxed">
+                            Gym management mobile application. Tested membership subscription flows, schedule reservations, and mobile UI responsiveness.
+                        </p>
+                    </div>
+                    <div class="mt-6 pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-[11px] font-mono-code text-cyan-400">View Test Scope <i class="fa-solid fa-arrow-right ml-1"></i></span>
+                        <i class="fa-solid fa-circle-info text-slate-500 group-hover:text-cyan-400"></i>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications" class="py-20 relative z-10 px-4">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Continuous Learning</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">Courses & Certifications</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-cyan-950 text-cyan-400 rounded-lg text-xl border border-cyan-800">
+                        <i class="fa-solid fa-brain"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-cyan-400 font-mono-code">Feb 2025 • ITIDA-SECC</span>
+                        <h4 class="text-sm font-bold text-white">Exploring Generative AI in Software Testing</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-indigo-950 text-indigo-400 rounded-lg text-xl border border-indigo-800">
+                        <i class="fa-solid fa-robot"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-indigo-400 font-mono-code">Jan 2025 • ITIDA-SECC</span>
+                        <h4 class="text-sm font-bold text-white">Functional Test Automation Using Selenium</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-purple-950 text-purple-400 rounded-lg text-xl border border-purple-800">
+                        <i class="fa-solid fa-graduation-cap"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-purple-400 font-mono-code">Udemy (Nezam)</span>
+                        <h4 class="text-sm font-bold text-white">The Complete 2024 Software Testing Bootcamp</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-emerald-950 text-emerald-400 rounded-lg text-xl border border-emerald-800">
+                        <i class="fa-solid fa-people-sync"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-emerald-400 font-mono-code">Simplilearn</span>
+                        <h4 class="text-sm font-bold text-white">Agile Scrum Foundation</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-blue-950 text-blue-400 rounded-lg text-xl border border-blue-800">
+                        <i class="fa-solid fa-certificate"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-blue-400 font-mono-code">Nezam Academy</span>
+                        <h4 class="text-sm font-bold text-white">API Testing & Software Practical Training</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-amber-950 text-amber-400 rounded-lg text-xl border border-amber-800">
+                        <i class="fa-solid fa-vial"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-amber-400 font-mono-code">QA CART</span>
+                        <h4 class="text-sm font-bold text-white">Manual Testing Bootcamp</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-slate-800 text-slate-300 rounded-lg text-xl border border-slate-700">
+                        <i class="fa-solid fa-bug"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-mono-code">Mahara TECH</span>
+                        <h4 class="text-sm font-bold text-white">Effective Test Case & Bug Report Writing Techniques</h4>
+                    </div>
+                </div>
+
+                <div class="glass-card p-5 rounded-xl border border-slate-800 flex items-start gap-4">
+                    <div class="p-3 bg-slate-800 text-slate-300 rounded-lg text-xl border border-slate-700">
+                        <i class="fa-solid fa-book-open"></i>
+                    </div>
+                    <div>
+                        <span class="text-[10px] text-slate-400 font-mono-code">Mahara TECH</span>
+                        <h4 class="text-sm font-bold text-white">Introduction to Software Testing Concepts & Techniques</h4>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 relative z-10 px-4 bg-slate-900/50">
+        <div class="max-w-5xl mx-auto">
+            <div class="text-center mb-16">
+                <span class="text-xs font-mono-code text-cyan-400 uppercase tracking-widest">Get In Touch</span>
+                <h2 class="text-3xl font-bold sm:text-4xl text-white mb-3">Contact Karim Khaled</h2>
+                <div class="w-16 h-1 bg-gradient-cyber mx-auto rounded-full mb-4"></div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                
+                <!-- Info Cards -->
+                <div class="lg:col-span-5 space-y-4">
+                    
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 bg-indigo-950 text-cyan-400 rounded-xl border border-indigo-800">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-mono-code">Phone</span>
+                                <p class="text-xs sm:text-sm font-bold text-white">+20 1018567496</p>
+                            </div>
+                        </div>
+                        <button onclick="copyToClipboard('+201018567496', 'Phone number copied!')" class="p-2 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition" title="Copy Phone">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center justify-between">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 bg-indigo-950 text-cyan-400 rounded-xl border border-indigo-800">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-mono-code">Email</span>
+                                <p class="text-xs sm:text-sm font-bold text-white break-all">karimkhaledtawfek@gmail.com</p>
+                            </div>
+                        </div>
+                        <button onclick="copyToClipboard('karimkhaledtawfek@gmail.com', 'Email address copied!')" class="p-2 text-xs bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-lg border border-slate-700 transition" title="Copy Email">
+                            <i class="fa-solid fa-copy"></i>
+                        </button>
+                    </div>
+
+                    <div class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center gap-3">
+                        <div class="p-3 bg-indigo-950 text-cyan-400 rounded-xl border border-indigo-800">
+                            <i class="fa-solid fa-location-dot"></i>
+                        </div>
+                        <div>
+                            <span class="text-[10px] text-slate-400 font-mono-code">Location</span>
+                            <p class="text-xs sm:text-sm font-bold text-white">Cairo, Egypt</p>
+                        </div>
+                    </div>
+
+                    <a href="https://www.linkedin.com/in/karim-khaled-38ba10216" target="_blank" rel="noopener" class="glass-card p-5 rounded-2xl border border-slate-800 flex items-center justify-between hover:border-cyan-400/50 transition">
+                        <div class="flex items-center gap-3">
+                            <div class="p-3 bg-blue-950 text-blue-400 rounded-xl border border-blue-800">
+                                <i class="fa-brands fa-linkedin"></i>
+                            </div>
+                            <div>
+                                <span class="text-[10px] text-slate-400 font-mono-code">LinkedIn</span>
+                                <p class="text-xs sm:text-sm font-bold text-white">karim-khaled-38ba10216</p>
+                            </div>
+                        </div>
+                        <i class="fa-solid fa-arrow-up-right-from-square text-xs text-slate-400"></i>
+                    </a>
+
+                </div>
+
+                <!-- Contact Form -->
+                <div class="lg:col-span-7">
+                    <div class="glass-card p-6 sm:p-8 rounded-2xl border border-slate-800">
+                        <div id="formAlert" class="hidden p-4 rounded-xl mb-6 text-xs font-mono-code"></div>
+
+                        <form id="contactForm" class="space-y-4" novalidate>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label for="name" class="block text-xs font-semibold mb-1 text-slate-300">Name</label>
+                                    <input type="text" id="name" name="name" placeholder="John Doe" 
+                                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs transition">
+                                    <span class="text-[11px] text-red-400 hidden mt-1" id="nameError">Name required.</span>
+                                </div>
+
+                                <div>
+                                    <label for="email" class="block text-xs font-semibold mb-1 text-slate-300">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="john@example.com" 
+                                           class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs transition">
+                                    <span class="text-[11px] text-red-400 hidden mt-1" id="emailError">Valid email required.</span>
+                                </div>
+                            </div>
+
+                            <div>
+                                <label for="subject" class="block text-xs font-semibold mb-1 text-slate-300">Subject</label>
+                                <input type="text" id="subject" name="subject" placeholder="Software Testing Opportunity" 
+                                       class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs transition">
+                                <span class="text-[11px] text-red-400 hidden mt-1" id="subjectError">Subject required.</span>
+                            </div>
+
+                            <div>
+                                <label for="message" class="block text-xs font-semibold mb-1 text-slate-300">Message</label>
+                                <textarea id="message" name="message" rows="4" placeholder="Hi Karim..." 
+                                          class="w-full px-3.5 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 text-xs transition"></textarea>
+                                <span class="text-[11px] text-red-400 hidden mt-1" id="messageError">Min 10 characters required.</span>
+                            </div>
+
+                            <button type="submit" class="w-full py-3.5 bg-gradient-cyber text-white font-bold rounded-xl shadow-lg hover:shadow-cyan-500/20 transition-all flex items-center justify-center gap-2 text-xs">
+                                <span>Send Message</span>
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Project Scope Details -->
+    <div id="projectModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md">
+        <div class="glass-card max-w-lg w-full rounded-2xl p-6 border border-slate-700 shadow-2xl relative">
+            <button onclick="closeProjectModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white text-lg">
+                <i class="fa-solid fa-xmark"></i>
+            </button>
+            <div id="modalContent"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-6 border-t border-slate-800 relative z-10 text-center text-xs text-slate-500 font-mono-code">
+        <p>&copy; 2026 Karim Khaled • Software Quality Control Engineer • Cairo, Egypt</p>
+    </footer>
+
+    <!-- Notification Toast -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 bg-slate-900 border border-cyan-500/50 text-cyan-300 px-4 py-3 rounded-xl shadow-2xl text-xs font-mono-code hidden flex items-center gap-2">
+        <i class="fa-solid fa-circle-check text-emerald-400"></i>
+        <span id="toastMsg">Action completed!</span>
+    </div>
+
+    <!-- JavaScript Logic -->
+    <script>
+        // Theme Switcher
+        const themeToggleBtn = document.getElementById('themeToggle');
+        const themeIcon = document.getElementById('themeIcon');
+
+        if (localStorage.getItem('color-theme') === 'light') {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.classList.add('light');
+            themeIcon.className = 'fa-solid fa-moon';
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                localStorage.setItem('color-theme', 'light');
+                themeIcon.className = 'fa-solid fa-moon';
+            } else {
+                document.documentElement.classList.remove('light');
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('color-theme', 'dark');
+                themeIcon.className = 'fa-solid fa-sun';
+            }
+        });
+
+        // Typing Effect
+        const typingTextElement = document.getElementById('typingText');
+        const words = ['Software QC Engineer', 'FinTech & POS Tester', 'API & Database Specialist'];
+        let wordIndex = 0, charIndex = 0, isDeleting = false;
+
+        function typeEffect() {
+            const currentWord = words[wordIndex];
+            typingTextElement.textContent = isDeleting 
+                ? currentWord.substring(0, charIndex--) 
+                : currentWord.substring(0, charIndex++);
+
+            let typeSpeed = isDeleting ? 40 : 80;
+
+            if (!isDeleting && charIndex === currentWord.length + 1) {
+                typeSpeed = 2000;
+                isDeleting = true;
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                wordIndex = (wordIndex + 1) % words.length;
+                typeSpeed = 300;
+            }
+
+            setTimeout(typeEffect, typeSpeed);
+        }
+        typeEffect();
+
+        // Particles Background
+        const canvas = document.getElementById('particleCanvas');
+        const ctx = canvas.getContext('2d');
+        let particlesArray = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resizeCanvas);
+        resizeCanvas();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 1;
+                this.speedX = Math.random() * 0.6 - 0.3;
+                this.speedY = Math.random() * 0.6 - 0.3;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = '#6366f1';
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particlesArray = [];
+            const numberOfParticles = Math.floor((canvas.width * canvas.height) / 20000);
+            for (let i = 0; i < numberOfParticles; i++) {
+                particlesArray.push(new Particle());
+            }
+        }
+        initParticles();
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            for (let i = 0; i < particlesArray.length; i++) {
+                particlesArray[i].update();
+                particlesArray[i].draw();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
+        // Mobile Menu
+        document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+            document.getElementById('mobileMenu').classList.toggle('hidden');
+        });
+
+        // Filter Projects
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const projectCards = document.querySelectorAll('.project-card');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                filterBtns.forEach(b => {
+                    b.classList.remove('bg-indigo-600', 'text-white', 'shadow-md');
+                    b.classList.add('text-slate-400');
+                });
+                btn.classList.add('bg-indigo-600', 'text-white', 'shadow-md');
+                btn.classList.remove('text-slate-400');
+
+                const filterValue = btn.getAttribute('data-filter');
+                projectCards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Project Modal Scope Details
+        const projectDetails = {
+            babrezq: {
+                title: "Bab Rezq Platform",
+                type: "Web Application",
+                scope: ["Functional testing of listing/distribution modules.", "Postman API endpoint validation.", "Database record verification and UI responsiveness across browsers."]
+            },
+            qpmop: {
+                title: "qPMOP Management Suite",
+                type: "Web & Mobile (iOS & Android)",
+                scope: ["Multi-platform user role & permission checks.", "Milestone project tracking logic.", "Retesting and bug tracking in JIRA across Android and iOS builds."]
+            },
+            q360: {
+                title: "q360 Personal Assistant",
+                type: "Web Application System",
+                scope: ["Gray-box testing combining backend logic and UI.", "Executing SQL queries for data verification.", "Task scheduling & notification verification."]
+            },
+            qauth: {
+                title: "qAuth Attendance App",
+                type: "Mobile Application (Biometric)",
+                scope: ["Biometric auth testing (Fingerprint & Face Recognition).", "Offline vs Online synchronization handling.", "API security header validation."]
+            },
+            al2btal: {
+                title: "Al2btal Gym App",
+                type: "Mobile Application",
+                scope: ["Subscription package purchase flows.", "Class reservation scheduling checks.", "Mobile UI regression testing."]
+            }
+        };
+
+        function openProjectModal(key) {
+            const data = projectDetails[key];
+            if (!data) return;
+            const content = document.getElementById('modalContent');
+            content.innerHTML = `
+                <span class="text-[10px] font-mono-code text-cyan-400 uppercase tracking-widest">${data.type}</span>
+                <h3 class="text-xl font-bold text-white mb-3">${data.title}</h3>
+                <h4 class="text-xs font-mono-code text-slate-300 font-bold mb-2">Tested Quality Scope:</h4>
+                <ul class="list-disc list-inside text-xs text-slate-300 space-y-1.5 leading-relaxed">
+                    ${data.scope.map(s => `<li>${s}</li>`).join('')}
+                </ul>
+            `;
+            document.getElementById('projectModal').classList.remove('hidden');
+        }
+
+        function closeProjectModal() {
+            document.getElementById('projectModal').classList.add('hidden');
+        }
+
+        // Quick API Simulation
+        function simulateApiCheck() {
+            const badge = document.getElementById('apiStatusBadge');
+            badge.textContent = "Testing...";
+            badge.className = "text-amber-400 animate-pulse";
+            
+            setTimeout(() => {
+                badge.textContent = "200 OK (38ms)";
+                badge.className = "text-emerald-400 font-bold";
+                showToast("API Endpoint POST /payment verified successfully!");
+            }, 700);
+        }
+
+        // Helpers
+        function showToast(msg) {
+            const toast = document.getElementById('toast');
+            document.getElementById('toastMsg').textContent = msg;
+            toast.classList.remove('hidden');
+            setTimeout(() => toast.classList.add('hidden'), 3000);
+        }
+
+        function copyToClipboard(text, message) {
+            const tempInput = document.createElement('input');
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast(message);
+        }
+
+        function downloadCVPlaceholder() {
+            showToast("Downloading Karim Khaled's Software Tester CV...");
+        }
+
+        // Form handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const subject = document.getElementById('subject').value.trim();
+            const message = document.getElementById('message').value.trim();
+            const alertBox = document.getElementById('formAlert');
+
+            if (name.length > 1 && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email) && subject !== '' && message.length >= 10) {
+                alertBox.className = 'p-4 rounded-xl mb-6 text-xs font-mono-code bg-emerald-950 text-emerald-300 border border-emerald-800';
+                alertBox.textContent = 'Message sent! Thank you for contacting Karim Khaled.';
+                alertBox.classList.remove('hidden');
+                this.reset();
+            } else {
+                alertBox.className = 'p-4 rounded-xl mb-6 text-xs font-mono-code bg-red-950 text-red-300 border border-red-800';
+                alertBox.textContent = 'Please complete all form fields correctly.';
+                alertBox.classList.remove('hidden');
+            }
+        });
+    </script>
+</body>
+</html>
